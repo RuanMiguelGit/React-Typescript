@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Task } from './components/interfaces';
+import TaskList from './components/TaskList'
 import './App.css';
 
 
@@ -15,9 +16,7 @@ function App() {
   ]);
   return (
     <div className="App">
-      {task.map(task =>  {
-       return <h1>{task.title}</h1>
-      })}
+    <TaskList task={task} />
     </div>
   );
 }

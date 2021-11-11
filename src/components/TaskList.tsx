@@ -3,12 +3,14 @@
 
  interface Props {
     task : Task[]
+    deleteTask : (id:number) => any
+
 }
 
- function TaskList({task}:Props ) {
+ function TaskList({task, deleteTask}:Props ) {
      return (
          <div>
-        {task.map((task) =>  <TaskCard task={task}/> )}
+        {task.map((tasks) =>  <TaskCard task={tasks} deleteTask={deleteTask}/> )}
          </div>
      )
  }

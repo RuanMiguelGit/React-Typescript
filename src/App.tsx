@@ -16,13 +16,17 @@ function App() {
     }
   ]);
 
+  const getcurrentTimeStamp = () => new Date().getTime()
+
   const addAnewTask  = (tasks:Task) => {
-    setTask([...task, tasks])
+    setTask([...task, {...tasks, id:getcurrentTimeStamp(), completed:true}])
   }
+
+  const deleteTask = (id:number) =>setTask( task.filter((task) => task.id !== id))
   return (
     <div className="App">
       <div>
-      <TaskList task={task} />
+      <TaskList task={task} deleteTask={deleteTask} />
       </div>
       <div>
         <TaskForm func={addAnewTask}/>

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
 import { Task } from './interfaces';
 
 interface Func {
@@ -7,20 +7,35 @@ interface Func {
 
 function TaskForm({func}:Func) {
     type HandleInputChange =  ChangeEvent<HTMLInputElement| HTMLTextAreaElement>
-    const [task, setTask] = useState({
+
+    let initialState = {
         title:'',
         description:''
-    });
-
-    const changeHandler = ({target:{name, value}}: HandleInputChange) => {
-        setTask({...task, [name]:value})
     }
 
+    const [task, setTask] = useState(initialState);
+
+    const changeHandler = ({ target:{name, value }}: HandleInputChange) => {
+        setTask({ ...task, [name]: value });
+
+    }
+
+
+    const handleTask = (e:FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        func(task)
+        setTask(initialState)
+    }
     return (
         <div>
-            <form>
-                <input type='input' placeholder='add task'onChange={changeHandler} />
-                <textarea name='descricao' rows={10} placeholder='descriçao' onChange={changeHandler}> </textarea>
+            <form onSubmit={handleTask}>
+                <input type='input'
+                 placeholder='add task'
+                 onChange={changeHandler} 
+                 />
+                <textarea name='descricao' 
+                rows={10} placeholder='descriçao'
+                 onChange={changeHandler} />
                 <button> Save</button>
             </form>
         </div>

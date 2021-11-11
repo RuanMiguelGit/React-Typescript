@@ -1,12 +1,13 @@
 import React, { ChangeEvent, useState } from 'react'
 
 function TaskForm() {
+    type HandleInputChange =  ChangeEvent<HTMLInputElement| HTMLTextAreaElement>
     const [task, setTask] = useState({
         title:'',
         description:''
     });
 
-    const changeHandler = ({target:{name, value}}:ChangeEvent<HTMLInputElement| HTMLTextAreaElement>) => {
+    const changeHandler = ({target:{name, value}}: HandleInputChange) => {
         setTask({...task, [name]:value})
     }
 

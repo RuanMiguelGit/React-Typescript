@@ -7,7 +7,12 @@ interface Props {
 function TaskCard({task}:Props) {
     return (
         <div>
+            <p>{task.id}</p> 
             <h1>{task.title}</h1>
+            <h2>{task.description}</h2>
+            <button >
+                Deletar
+            </button>
         </div>
     )
 }

@@ -7,7 +7,7 @@ import './App.css';
 
 
 function App() {
-  const [task] = useState<Task[]>([
+  const [task, setTask] = useState<Task[]>([
     {
       id:1,
       title:'learn react',
@@ -15,13 +15,17 @@ function App() {
       completed:true
     }
   ]);
+
+  const addAnewTask  = (tasks:Task) => {
+    setTask([...task, tasks])
+  }
   return (
     <div className="App">
       <div>
       <TaskList task={task} />
       </div>
       <div>
-        <TaskForm />
+        <TaskForm func={addAnewTask}/>
       </div>
     </div>
   );

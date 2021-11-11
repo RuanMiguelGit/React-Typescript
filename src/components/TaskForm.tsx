@@ -1,6 +1,11 @@
 import React, { ChangeEvent, useState } from 'react'
+import { Task } from './interfaces';
 
-function TaskForm() {
+interface Func {
+    func: (task:Task) => void
+}
+
+function TaskForm({func}:Func) {
     type HandleInputChange =  ChangeEvent<HTMLInputElement| HTMLTextAreaElement>
     const [task, setTask] = useState({
         title:'',
